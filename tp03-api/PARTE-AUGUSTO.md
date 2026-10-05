@@ -25,7 +25,7 @@ Três schemas Pydantic, separados:
 - `AutorResponse`: `id`, `nome`, `nacionalidade`. Use `model_config = ConfigDict(from_attributes=True)`.
 
 ### 2. `app/routers/autores.py`
-`router = APIRouter()` com estes endpoints (use `db: Session = Depends(get_db)`):
+O arquivo já existe com `router = APIRouter()` vazio; preencha-o com estes endpoints (use `db: Session = Depends(get_db)`):
 
 | Método | Rota | Status | Comportamento |
 |---|---|---|---|

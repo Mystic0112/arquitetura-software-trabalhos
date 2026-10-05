@@ -24,7 +24,7 @@ uvicorn app.main:app --reload     # abra http://localhost:8000/docs
 - `LivroResponse`: `id`, `titulo`, `ano`, `autor_id`, com `model_config = ConfigDict(from_attributes=True)`
 
 ### 2. `app/routers/livros.py`
-`router = APIRouter()` (registrado em `/livros` pelo `main.py`), com `db: Session = Depends(get_db)`:
+O arquivo já existe com `router = APIRouter()` vazio (registrado em `/livros` pelo `main.py`), com `db: Session = Depends(get_db)`:
 
 | Método | Rota | Status | Comportamento |
 |---|---|---|---|

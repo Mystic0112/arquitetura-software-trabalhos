@@ -41,3 +41,31 @@ tp03-api/
 - Tabelas: `autores` e `livros`. Relationship: `Autor.livros` ↔ `Livro.autor`.
 - Dependência de sessão: `from app.core.database import get_db`.
 - Cada router é exportado como `router` e já é registrado no `main.py` pelo Hélio (`/autores` e `/livros`).
+
+## Parte 1 (Hélio) — o que já está pronto na base
+
+| Arquivo | Função |
+|---|---|
+| `app/core/database.py` | Engine SQLite, `SessionLocal`, `Base` e `get_db`. Liga o `PRAGMA foreign_keys` (o SQLite ignora FK por padrão). |
+| `app/models/autor.py`, `livro.py` | Tabelas `autores` e `livros`, com `ForeignKey` e `relationship()` nos dois lados. |
+| `alembic/env.py` | Lê `Base.metadata` e a URL do banco. Modo batch ativo (SQLite). |
+| `alembic/versions/*_cria_tabelas_autores_e_livros.py` | Migration versionada que cria as duas tabelas. |
+| `app/main.py` | Registra os routers em `/autores` e `/livros`. As tabelas só nascem via `alembic upgrade head`. |
+| `app/routers/autores.py`, `livros.py` | **Placeholders** com `router` vazio, para a API já subir. Augusto e Yan preenchem. |
+
+### Rodar a base
+
+```bash
+cd tp03-api
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+alembic upgrade head
+uvicorn app.main:app --reload
+```
+
+### Mexeu num model?
+
+```bash
+alembic revision --autogenerate -m "descrição da mudança"
+alembic upgrade head
+```
